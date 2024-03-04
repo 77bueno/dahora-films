@@ -8,7 +8,6 @@ export default function BuscarFilmes({navigation}) {
 
   const filmeDigitado = (valorDigitado) => {
     setFilme(valorDigitado);
-    console.log(valorDigitado);
   }
 
   const buscarfilme = () => {
