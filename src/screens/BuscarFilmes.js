@@ -1,22 +1,24 @@
-import { Button, StyleSheet, Text, TextInput, View, Alert } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View, Alert, Vibration } from "react-native";
 import React, { useState } from "react";
 import SafeContainer from "../components/SafeContainer";
 import { Ionicons } from "@expo/vector-icons";
  
-export default function BuscarFilmes({ navigation }) {
+export default function BuscarFilmes() {
   const [filme, setFilme] = useState("");
- 
-  const handleChangeText = (text) => {
-    setFilme(text); 
-  };
- 
-  const handleSearch = () => {
-    if (filme.trim() === "") {
-      Alert.alert("Ops!", "Você deve digitar o nome de um filme!");
-    } else {
-      Alert.alert("Você procurou por:", filme);
+
+  const filmeDigitado = (valorDigitado) => {
+    setFilme(valorDigitado);
+    console.log(valorDigitado);
+  }
+
+  const buscarfilme = () => {
+    if( !filme ){
+      Vibration.vibrate(500);
+      return Alert.alert("Ops! ", "Você deve digitar um filme!");
     }
-  };
+
+    Alert.alert("Você procurou por: ", filme);
+  }
  
   return (
     <SafeContainer>
@@ -32,13 +34,17 @@ export default function BuscarFilmes({ navigation }) {
           <TextInput
             style={estilos.input}
             placeholder="Digite o nome do filme"
-            keyboardType="text"
-            onChangeText={handleChangeText}
+            onSubmitEditing={buscarfilme}
+            onChangeText={filmeDigitado}
+            placeholderTextColor={"#5451a6"}
+            maxLength={30}
+            autoFocus
+            enterKeyHint="search"
           />
         </View>
         <Button
           title="Procurar"
-          onPress={handleSearch} 
+          onPress={buscarfilme} 
           color={"#5451a6"}
         />
       </View>
@@ -58,6 +64,7 @@ const estilos = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderColor: "#5451a6",
     width: "80%",
   },
   sessaoInput: {
