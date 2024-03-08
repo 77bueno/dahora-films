@@ -3,6 +3,8 @@ import SafeContainer from "../components/SafeContainer";
 import { api, apiKey } from "../services/api-moviedb";
 import { useEffect, useState } from "react";
 import CardFilme from "../components/CardFilme";
+import Separador from "../components/Separador";
+import ListaVazia from "../components/ListaVazia";
 
 export default function Resultados({ route }) {
   /* State para gerenciar os resultados da busca da API */
@@ -50,6 +52,8 @@ export default function Resultados({ route }) {
             renderItem={({ item }) => {
               return <CardFilme filme={item} />
             }}
+            ListEmptyComponent={ListaVazia}
+            ItemSeparatorComponent={Separador}
           />
         </View>
       </View>
