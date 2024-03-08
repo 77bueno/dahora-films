@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import SafeContainer from "../components/SafeContainer";
 import { api, apiKey } from "../services/api-moviedb";
 import { useEffect, useState } from "react";
+import CardFilme from "../components/CardFilme";
  
 export default function Resultados( {route} ) {
   /* State para gerenciar os resultados da busca da API */
@@ -47,7 +48,7 @@ export default function Resultados( {route} ) {
 
           /* Prop que irá renderizar cada item/filme em um componente */
           renderItem={ ({item}) => {
-            return <Text> {item.title} </Text>
+            return <Text> <CardFilme filme={item} /> </Text>
           }} 
         />
       </View>
