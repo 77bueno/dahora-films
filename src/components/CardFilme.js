@@ -3,23 +3,30 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import React from 'react';
 import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
 
-export default function CardFilme() {
-  return (
-    <View style={estilos.card}>
-      <Image style={estilos.imagem} source={imagemAlternativa} />
-      <View style={estilos.corpo}>
-        <Text style={estilos.titulo}> Nome do filme... </Text>
-        <View style={estilos.botoes}>
-            <Pressable style={estilos.botao}>
-                <Text style={estilos.textoBotao}>Leia mais</Text>
-            </Pressable>
-            <Pressable style={estilos.botao}>
-                <Text style={estilos.textoBotao}>Leia mais</Text>
-            </Pressable>
+export default function CardFilme({filme}) {
+    /* Extraindo as informações do filme (titulo e imagem de capa) */
+    const { title, poster_path } = filme;
+
+    return (
+        <View style={estilos.card}>
+        <Image 
+            resizeMode='cover' 
+            style={estilos.imagem} 
+            source={{ uri: `https://image.tmdb.org/t/p/w500/${poster_path}` }}
+        />
+        <View style={estilos.corpo}>
+            <Text style={estilos.titulo}> {title} </Text>
+            <View style={estilos.botoes}>
+                <Pressable style={estilos.botao}>
+                    <Text style={estilos.textoBotao}>Leia mais</Text>
+                </Pressable>
+                <Pressable style={estilos.botao}>
+                    <Text style={estilos.textoBotao}>Salvar</Text>
+                </Pressable>
+            </View>
         </View>
-      </View>
-    </View>
-  )
+        </View>
+    )
 }
 
 const estilos = StyleSheet.create({
@@ -44,7 +51,8 @@ const estilos = StyleSheet.create({
         color: "#ffffff",
         textAlign: "center",
         paddingVertical: 8,
-        fontSize: 16
+        fontSize: 16,
+        marginLeft: 8
     },
     botoes: {
         flexDirection: "row",

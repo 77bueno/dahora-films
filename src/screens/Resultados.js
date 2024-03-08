@@ -3,16 +3,16 @@ import SafeContainer from "../components/SafeContainer";
 import { api, apiKey } from "../services/api-moviedb";
 import { useEffect, useState } from "react";
 import CardFilme from "../components/CardFilme";
- 
-export default function Resultados( {route} ) {
+
+export default function Resultados({ route }) {
   /* State para gerenciar os resultados da busca da API */
   const [resultados, setResultados] = useState([]);
 
   // Capturando o parâmetro filme vindo de BuscarFilmes
   const { filme } = route.params;
 
-  useEffect( () => {
-    async function buscarFilmes(){
+  useEffect(() => {
+    async function buscarFilmes() {
       try {
         const resposta = await api.get(`/search/movie`, {
           params: {
@@ -26,44 +26,46 @@ export default function Resultados( {route} ) {
         /* Adicionando os resultados ao teste */
         setResultados(resposta.data.results);
       } catch (error) {
-        console.error("Deu ruim: "+error.message);
+        console.error("Deu ruim: " + error.message);
       }
     }
     buscarFilmes();
-  }, [] )
-  
+  }, [])
+
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
-        <Text style={estilos.texto}>Você procurou por: { filme } </Text>
-      </View>
+        <Text style={estilos.texto}>Você procurou por: {filme} </Text>
 
-      <View style={estilos.viewFilmes}>
-        <FlatList 
-          /* Prop data apontando para o state contendo os dados para a FlatList */
-          data={resultados} 
 
-          /* Extraindo a chave/key de cada registro/item/filme único */
-          keyExtractor={item => item.id}
+        <View style={estilos.viewFilmes}>
+          <FlatList
+            /* Prop data apontando para o state contendo os dados para a FlatList */
+            data={resultados}
 
-          /* Prop que irá renderizar cada item/filme em um componente */
-          renderItem={ ({item}) => {
-            return <Text> <CardFilme filme={item} /> </Text>
-          }} 
-        />
+            /* Extraindo a chave/key de cada registro/item/filme único */
+            keyExtractor={item => item.id}
+
+            /* Prop que irá renderizar cada item/filme em um componente */
+            renderItem={({ item }) => {
+              return <CardFilme filme={item} />
+            }}
+          />
+        </View>
       </View>
     </SafeContainer>
   );
 }
- 
+
 const estilos = StyleSheet.create({
   subContainer: {
     flex: 1,
     padding: 16,
-    width: "100%"
+    width: "100%",
   },
   viewFilmes: {
-    marginVertical: 8
+    marginVertical: 8,
+  
   },
   texto: {
     marginVertical: 8
