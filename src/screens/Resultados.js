@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
 import SafeContainer from "../components/SafeContainer";
 import { api, apiKey } from "../services/api-moviedb";
 import { useEffect, useState } from "react";
@@ -9,6 +9,9 @@ import ListaVazia from "../components/ListaVazia";
 export default function Resultados({ route }) {
   /* State para gerenciar os resultados da busca da API */
   const [resultados, setResultados] = useState([]);
+
+  /* State para gerenciar o loading (mostrar/esconder) */
+  const [loading, setLoading] = useState(true);
 
   // Capturando o parâmetro filme vindo de BuscarFilmes
   const { filme } = route.params;
@@ -27,6 +30,9 @@ export default function Resultados({ route }) {
 
         /* Adicionando os resultados ao teste */
         setResultados(resposta.data.results);
+
+        /* Desativando o loading */
+        setLoading(false)
       } catch (error) {
         console.error("Deu ruim: " + error.message);
       }
@@ -39,8 +45,11 @@ export default function Resultados({ route }) {
       <View style={estilos.subContainer}>
         <Text style={estilos.texto}>Você procurou por: {filme} </Text>
 
+        { loading && 
+        <ActivityIndicator size="large" color="#5451a6" /> }
 
-        <View style={estilos.viewFilmes}>
+        {!loading && 
+          <View style={estilos.viewFilmes}>
           <FlatList
             /* Prop data apontando para o state contendo os dados para a FlatList */
             data={resultados}
@@ -55,7 +64,7 @@ export default function Resultados({ route }) {
             ListEmptyComponent={ListaVazia}
             ItemSeparatorComponent={Separador}
           />
-        </View>
+          </View>}
       </View>
     </SafeContainer>
   );
