@@ -14,7 +14,11 @@ export default function Detalhes({route}) {
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
-        <ImageBackground style={estilos.imagemFundo} source={{uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`}} >
+        <ImageBackground style={estilos.imagemFundo} source={ 
+          backdrop_path
+            ? {uri: `https://image.tmdb.org/t/p/original/${backdrop_path}`}
+          : ImagemAlternativa
+        } >
           <Text style={estilos.tituloFilme}> {title} </Text>
         </ImageBackground>
 
