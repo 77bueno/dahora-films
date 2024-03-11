@@ -20,8 +20,8 @@ export default function Detalhes({route}) {
 
         <View style={estilos.conteudo}>
           <ScrollView>
-            <Text style={[estilos.texto, estilos.avaliacao]}>Avaliação: {vote_average}</Text>
-            <Text style={[estilos.texto, estilos.lancamento]}>{formataData(release_date)}</Text>
+            <Text style={[estilos.texto, estilos.avaliacao]}>⭐ Avaliação: {vote_average}</Text>
+            <Text style={[estilos.texto, estilos.lancamento]}>📅 {formataData(release_date)}</Text>
             <Text style={[estilos.texto, estilos.descricao]}>{overview}</Text>
           </ScrollView>
         </View>
