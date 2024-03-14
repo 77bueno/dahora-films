@@ -23,7 +23,7 @@ import {
         /* 1) Verificar/carregar os favoritos armazenados no AsyncStorage.
         Usamos o getItem do AsyncStorage para analisar se existe um armazenamento com o nome indicado (@favoritosdahora). Existindo, ele é carregado para
         a const filmesFavoritos. Se não existir, será criado posteriormente. */
-        const filmesFavoritos = await AsyncStorage.getItem("@favoritosdahora");
+        const filmesFavoritos = await AsyncStorage.getItem("@favoritosvictor");
   
         /* 2) Verificar/criar uma lista de filmes favoritos (dados).
         Se filmesFavoritos existir (ou seja, tem dados no storage), pegamos
