@@ -16,6 +16,12 @@ export default function CardFilme({ filme }) {
             
             const filmesFavoritos = await AsyncStorage.getItem("@favoritosvictor");
 
+            const listaDeFilmes = filmesFavoritos ? JSON.parse(filmesFavoritos) : [];
+
+            const jaTemFilme = listaDeFilmes.some( (filmeNaLista) => {
+                return filmeNaLista.id === filme.id; 
+            } );
+
         } catch (error) {
             console.log("Erro "+error);
             Alert.alert("Erro: ", "Ocorreu um erro ao salvar o filme...");
