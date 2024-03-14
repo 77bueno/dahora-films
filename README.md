@@ -2,6 +2,9 @@
 
 Exemplo de app nativo multiplataforma criado com React Native e Expo.
 
+## Branch 09-gerenciamento-de-favoritos
+
+
 ## Branch 08-tela-de-detalhes-do-filme
 
 - Criação da tela `Detalhes.js` e adição dela à `Stack` em `App.js`

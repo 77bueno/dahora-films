@@ -1,14 +1,26 @@
 // Atalho rnfs - Só funciona se tiver a extensão ES7 instalada
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, Alert } from 'react-native';
 import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CardFilme({ filme }) {
     const { title, poster_path } = filme;
-
-    /* Acessar recursos de navegação */
     const navigation = useNavigation();
+
+    const salvar = async () => {
+        // Alert.alert("Favoritos");
+
+        try {
+            
+            const filmesFavoritos = await AsyncStorage.getItem("@favoritosvictor");
+
+        } catch (error) {
+            console.log("Erro "+error);
+            Alert.alert("Erro: ", "Ocorreu um erro ao salvar o filme...");
+        }
+    }
 
     return (
         <View style={estilos.card}>
@@ -29,7 +41,7 @@ export default function CardFilme({ filme }) {
                         <Ionicons name='book' size={12} />    Leia mais
                     </Text>
                 </Pressable>
-                <Pressable style={estilos.botao}>
+                <Pressable style={estilos.botao} onPress={salvar}>
                     <Text style={estilos.textoBotao}>
                         <Ionicons name='add-circle' size={12} />    Salvar
                     </Text>
