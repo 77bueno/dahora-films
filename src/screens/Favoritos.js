@@ -38,16 +38,29 @@ export default function Favoritos({ navigation }) {
     carregarFavoritos();
   }, []);
 
-  // Log no state
-  console.log(listaFavoritos);
-
+  const excluirTodosFavoritos = () => {
+    Alert.alert(
+      "Excluir TODOS?",
+      "Tem certeza que deseja excluir TODOS os favoritos",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Confirmar",
+          style: "destructive",
+        }
+      ]
+    )
+  }
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
         <View style={estilos.viewFavoritos}>
           <Text style={estilos.texto}>Quantidade: {listaFavoritos.length}</Text>
 
-          <Pressable style={estilos.botaoExcluirFavoritos}>
+          <Pressable onPress={excluirTodosFavoritos} style={estilos.botaoExcluirFavoritos}>
             <Text style={estilos.textoBotao}>
               <Ionicons name="trash-outline" size={16} /> Excluir favoritos
             </Text>
