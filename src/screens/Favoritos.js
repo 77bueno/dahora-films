@@ -10,6 +10,7 @@ import SafeContainer from "../components/SafeContainer";
 
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Favoritos() {
   /* State para registrar os dados carregados do storage */
@@ -45,7 +46,28 @@ export default function Favoritos() {
       <View style={estilos.subContainer}>
         <View style={estilos.viewFavoritos}>
           <Text style={estilos.texto}>Quantidade: {listaFavoritos.length}</Text>
+
+          <Pressable style={estilos.botaoExcluirFavoritos}>
+            <Text style={estilos.textoBotao}>
+              <Ionicons name="trash-outline" size={16} /> Excluir favoritos
+            </Text>
+          </Pressable>
         </View>
+
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {listaFavoritos.map((filme) => {
+            return (
+              <View style={estilos.item}>
+                <Pressable style={estilos.botaoFilme}>
+                  <Text style={estilos.titulo}>{filme.title}</Text>
+                </Pressable>
+                <Pressable style={estilos.botaoExcluir}>
+                  <Ionicons name="trash" size={16} />
+                </Pressable>
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
     </SafeContainer>
   );
@@ -57,5 +79,18 @@ const estilos = StyleSheet.create({
     padding: 16,
     width: "100%",
   },
+  viewFavoritos: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 8,
+  },
   texto: { marginVertical: 8 },
+  botaoExcluirFavoritos: {
+    borderWidth: 1,
+    borderColor: "red",
+    padding: 8,
+    borderRadius: 4,
+  },
+  textoBotao: { color: "red" },
 });
