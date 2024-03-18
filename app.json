@@ -2,7 +2,7 @@
   "expo": {
     "name": "Dá Hora Filmes",
     "slug": "dahora-filmes",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/dahora.png",
     "userInterfaceStyle": "light",
@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-dahora.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "package": "com.dev_bueno.dahorafilmes"
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "08804cfc-a0c2-4159-919b-bb86426dc292"
+      }
+    },
+    "owner": "dev_bueno"
   }
 }
