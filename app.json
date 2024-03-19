@@ -2,7 +2,7 @@
   "expo": {
     "name": "Dá Hora Filmes",
     "slug": "dahora-filmes",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/dahora.png",
     "userInterfaceStyle": "light",
