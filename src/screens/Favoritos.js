@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 import SafeContainer from "../components/SafeContainer";
 
-export default function Favoritos() {
+export default function Favoritos( {navigation} ) {
   const [listaFavoritos, setListaFavoritos] = useState([]);
 
   useEffect(() => {
