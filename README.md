@@ -1,4 +1,3 @@
-[09:40] JHONATAN VINICIUS DE SOUSA OLIVEIRA
 # DaHora Filmes
  
 Exemplo de app nativo multiplataforma criado com React Native e Expo.
